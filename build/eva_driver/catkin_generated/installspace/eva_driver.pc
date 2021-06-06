@@ -1,0 +1,8 @@
+prefix=/home/zainab/thesis/install
+
+Name: eva_driver
+Description: Description of eva_driver
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

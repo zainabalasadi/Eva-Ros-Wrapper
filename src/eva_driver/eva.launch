@@ -1,0 +1,6 @@
+<launch>
+    <node name="eva_driver" pkg="eva_driver" type="eva_node.py" output="screen">
+        <param name="publish_current_pos_frequency" type="double" value="10.0" />
+        <param name="publish_grip_status_frequency" type="double" value="2.0" />
+    </node>
+</launch>
