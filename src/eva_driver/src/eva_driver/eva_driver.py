@@ -34,20 +34,21 @@ def _quaternion_multiply(quaternion_1, quaternion_0):
                      x1 * y0 - y1 * x0 + z1 * w0 + w1 * z0], dtype=np.float64)
 
 def array_to_joint(array):
-    joint = EvaJoint();
-    joint.j1 = array[0]
-    joint.j2 = array[1]
-    joint.j3 = array[2]
-    joint.j3 = array[3]
-    joint.j4 = array[4]
-    joint.j5 = array[5]
+    joint = EvaJoint(array[0], array[1], array[2], array[3], array[4], array[5]);
     return joint
+
+def joint_to_array(joint):
+    array = [joint.j1, joint.j2, joint.j3, joint.j4, joint.j5, joint.j6]
+    return array
 
 class EvaDriver:
     def __init__(self):
         self.eva = _setup_eva_connection()
         self._is_grasp = False
         self._current_pos = array_to_joint(DEFAULT_POSE_HOME)
+
+        with self.eva.lock():
+            self.go_home()
 
     """
     Generic getters and setters for EvaDriver.
@@ -59,7 +60,7 @@ class EvaDriver:
             self._is_grasp = new_is_grasp
 
     def get_current_pos(self):
-        return self._current_pos
+        return joint_to_array(self._current_pos)
     def set_current_pos(self, new_pos):
         self._current_pos = array_to_joint(new_pos)
 
@@ -106,18 +107,19 @@ class EvaDriver:
     angle: Angular rotation of axis 6 in degrees
     """
     def go_to_position(self, position, angle):
-        #print('MOVE: I am going to move by x={:f}, y={:f} y={:f}'.format(position["x"], position["y"], position["z"]))
-        # print('MOVE: I am going to move by x={:f}, y={:f} y={:f}'.format(position.x, position.y, position.z))
-        # success_ik, joints_ik = self.solve_ik_head_down(self.get_current_pos(), angle, position)
+        # print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position["x"], position["y"], position["z"]))
+        print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position.x, position.y, position.z))
 
-        # if 'success' in success_ik:
-        #     with self.eva.lock():
-        #         self.eva.control_go_to(joints_ik)
-        #         print('Performed move to joint angles ', joints_ik)
-        #         self.set_current_pos(joints_ik)
-        # else:
-        #     print('Cannot perform move, error: ', success_ik)
-        print("Moving...")
+        success_ik, joints_ik = self.solve_ik_head_down(self.get_current_pos(), angle, position)
+
+        if 'success' in success_ik:
+            with self.eva.lock():
+                self.eva.control_go_to(joints_ik)
+                print('Performed move to joint angles ', joints_ik)
+                self.set_current_pos(joints_ik)
+        else:
+            print('Cannot perform move, error: ', success_ik)
+        # print("Moving...")
        
     """
     This method solves the inverse kinematics problem for the special

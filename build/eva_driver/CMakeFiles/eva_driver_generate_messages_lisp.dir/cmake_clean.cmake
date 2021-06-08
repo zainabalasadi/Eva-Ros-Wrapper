@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/zainab/thesis/devel/share/common-lisp/ros/eva_driver/msg/EvaJoint.lisp"
+  "/home/zainab/thesis/devel/share/common-lisp/ros/eva_driver/msg/Joints.lisp"
   "CMakeFiles/eva_driver_generate_messages_lisp"
 )
 

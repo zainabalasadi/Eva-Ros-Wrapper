@@ -3,5 +3,7 @@
   (:export
    "<EVAJOINT>"
    "EVAJOINT"
+   "<JOINTS>"
+   "JOINTS"
   ))
 

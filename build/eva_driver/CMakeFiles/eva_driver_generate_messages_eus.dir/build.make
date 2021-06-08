@@ -54,20 +54,27 @@ CMAKE_BINARY_DIR = /home/zainab/thesis/build
 include eva_driver/CMakeFiles/eva_driver_generate_messages_eus.dir/progress.make
 
 eva_driver/CMakeFiles/eva_driver_generate_messages_eus: /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/EvaJoint.l
+eva_driver/CMakeFiles/eva_driver_generate_messages_eus: /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/Joints.l
 eva_driver/CMakeFiles/eva_driver_generate_messages_eus: /home/zainab/thesis/devel/share/roseus/ros/eva_driver/manifest.l
 
 
 /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/EvaJoint.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/EvaJoint.l: /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from eva_driver/EvaJoint.msg"
-	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -p eva_driver -o /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg
+
+/home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/Joints.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/Joints.l: /home/zainab/thesis/src/eva_driver/msg/Joints.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from eva_driver/Joints.msg"
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/zainab/thesis/src/eva_driver/msg/Joints.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg
 
 /home/zainab/thesis/devel/share/roseus/ros/eva_driver/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp manifest code for eva_driver"
-	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/zainab/thesis/devel/share/roseus/ros/eva_driver eva_driver
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for eva_driver"
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/zainab/thesis/devel/share/roseus/ros/eva_driver eva_driver geometry_msgs std_msgs
 
 eva_driver_generate_messages_eus: eva_driver/CMakeFiles/eva_driver_generate_messages_eus
 eva_driver_generate_messages_eus: /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/EvaJoint.l
+eva_driver_generate_messages_eus: /home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/Joints.l
 eva_driver_generate_messages_eus: /home/zainab/thesis/devel/share/roseus/ros/eva_driver/manifest.l
 eva_driver_generate_messages_eus: eva_driver/CMakeFiles/eva_driver_generate_messages_eus.dir/build.make
 

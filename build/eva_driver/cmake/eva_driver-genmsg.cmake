@@ -1,8 +1,8 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "eva_driver: 1 messages, 0 services")
+message(STATUS "eva_driver: 2 messages, 0 services")
 
-set(MSG_I_FLAGS "-Ieva_driver:/home/zainab/thesis/src/eva_driver/msg")
+set(MSG_I_FLAGS "-Ieva_driver:/home/zainab/thesis/src/eva_driver/msg;-Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
 # Find all generators
 find_package(gencpp REQUIRED)
@@ -22,6 +22,11 @@ add_custom_target(_eva_driver_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "eva_driver" "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg" ""
 )
 
+get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" NAME_WE)
+add_custom_target(_eva_driver_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "eva_driver" "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -30,6 +35,12 @@ add_custom_target(_eva_driver_generate_messages_check_deps_${_filename}
 ### Generating Messages
 _generate_msg_cpp(eva_driver
   "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/eva_driver
+)
+_generate_msg_cpp(eva_driver
+  "/home/zainab/thesis/src/eva_driver/msg/Joints.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/eva_driver
@@ -51,6 +62,8 @@ add_dependencies(eva_driver_generate_messages eva_driver_generate_messages_cpp)
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg" NAME_WE)
 add_dependencies(eva_driver_generate_messages_cpp _eva_driver_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" NAME_WE)
+add_dependencies(eva_driver_generate_messages_cpp _eva_driver_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(eva_driver_gencpp)
@@ -63,6 +76,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS eva_driver_generate_messages_cpp)
 ### Generating Messages
 _generate_msg_eus(eva_driver
   "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/eva_driver
+)
+_generate_msg_eus(eva_driver
+  "/home/zainab/thesis/src/eva_driver/msg/Joints.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/eva_driver
@@ -84,6 +103,8 @@ add_dependencies(eva_driver_generate_messages eva_driver_generate_messages_eus)
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg" NAME_WE)
 add_dependencies(eva_driver_generate_messages_eus _eva_driver_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" NAME_WE)
+add_dependencies(eva_driver_generate_messages_eus _eva_driver_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(eva_driver_geneus)
@@ -96,6 +117,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS eva_driver_generate_messages_eus)
 ### Generating Messages
 _generate_msg_lisp(eva_driver
   "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/eva_driver
+)
+_generate_msg_lisp(eva_driver
+  "/home/zainab/thesis/src/eva_driver/msg/Joints.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/eva_driver
@@ -117,6 +144,8 @@ add_dependencies(eva_driver_generate_messages eva_driver_generate_messages_lisp)
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg" NAME_WE)
 add_dependencies(eva_driver_generate_messages_lisp _eva_driver_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" NAME_WE)
+add_dependencies(eva_driver_generate_messages_lisp _eva_driver_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(eva_driver_genlisp)
@@ -129,6 +158,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS eva_driver_generate_messages_lisp)
 ### Generating Messages
 _generate_msg_nodejs(eva_driver
   "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/eva_driver
+)
+_generate_msg_nodejs(eva_driver
+  "/home/zainab/thesis/src/eva_driver/msg/Joints.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/eva_driver
@@ -150,6 +185,8 @@ add_dependencies(eva_driver_generate_messages eva_driver_generate_messages_nodej
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg" NAME_WE)
 add_dependencies(eva_driver_generate_messages_nodejs _eva_driver_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" NAME_WE)
+add_dependencies(eva_driver_generate_messages_nodejs _eva_driver_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(eva_driver_gennodejs)
@@ -162,6 +199,12 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS eva_driver_generate_messages_nodejs
 ### Generating Messages
 _generate_msg_py(eva_driver
   "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/eva_driver
+)
+_generate_msg_py(eva_driver
+  "/home/zainab/thesis/src/eva_driver/msg/Joints.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/eva_driver
@@ -183,6 +226,8 @@ add_dependencies(eva_driver_generate_messages eva_driver_generate_messages_py)
 # add dependencies to all check dependencies targets
 get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg" NAME_WE)
 add_dependencies(eva_driver_generate_messages_py _eva_driver_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/zainab/thesis/src/eva_driver/msg/Joints.msg" NAME_WE)
+add_dependencies(eva_driver_generate_messages_py _eva_driver_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(eva_driver_genpy)
@@ -200,6 +245,12 @@ if(gencpp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/ev
     DESTINATION ${gencpp_INSTALL_DIR}
   )
 endif()
+if(TARGET geometry_msgs_generate_messages_cpp)
+  add_dependencies(eva_driver_generate_messages_cpp geometry_msgs_generate_messages_cpp)
+endif()
+if(TARGET std_msgs_generate_messages_cpp)
+  add_dependencies(eva_driver_generate_messages_cpp std_msgs_generate_messages_cpp)
+endif()
 
 if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/eva_driver)
   # install generated code
@@ -207,6 +258,12 @@ if(geneus_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/ev
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/eva_driver
     DESTINATION ${geneus_INSTALL_DIR}
   )
+endif()
+if(TARGET geometry_msgs_generate_messages_eus)
+  add_dependencies(eva_driver_generate_messages_eus geometry_msgs_generate_messages_eus)
+endif()
+if(TARGET std_msgs_generate_messages_eus)
+  add_dependencies(eva_driver_generate_messages_eus std_msgs_generate_messages_eus)
 endif()
 
 if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/eva_driver)
@@ -216,6 +273,12 @@ if(genlisp_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/
     DESTINATION ${genlisp_INSTALL_DIR}
   )
 endif()
+if(TARGET geometry_msgs_generate_messages_lisp)
+  add_dependencies(eva_driver_generate_messages_lisp geometry_msgs_generate_messages_lisp)
+endif()
+if(TARGET std_msgs_generate_messages_lisp)
+  add_dependencies(eva_driver_generate_messages_lisp std_msgs_generate_messages_lisp)
+endif()
 
 if(gennodejs_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/eva_driver)
   # install generated code
@@ -223,6 +286,12 @@ if(gennodejs_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_D
     DIRECTORY ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/eva_driver
     DESTINATION ${gennodejs_INSTALL_DIR}
   )
+endif()
+if(TARGET geometry_msgs_generate_messages_nodejs)
+  add_dependencies(eva_driver_generate_messages_nodejs geometry_msgs_generate_messages_nodejs)
+endif()
+if(TARGET std_msgs_generate_messages_nodejs)
+  add_dependencies(eva_driver_generate_messages_nodejs std_msgs_generate_messages_nodejs)
 endif()
 
 if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/eva_driver)
@@ -242,4 +311,10 @@ if(genpy_INSTALL_DIR AND EXISTS ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/eva_
     FILES_MATCHING
     REGEX "${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/eva_driver/.+/__init__.pyc?$"
   )
+endif()
+if(TARGET geometry_msgs_generate_messages_py)
+  add_dependencies(eva_driver_generate_messages_py geometry_msgs_generate_messages_py)
+endif()
+if(TARGET std_msgs_generate_messages_py)
+  add_dependencies(eva_driver_generate_messages_py std_msgs_generate_messages_py)
 endif()

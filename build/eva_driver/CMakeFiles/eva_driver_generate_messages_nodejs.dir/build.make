@@ -54,15 +54,22 @@ CMAKE_BINARY_DIR = /home/zainab/thesis/build
 include eva_driver/CMakeFiles/eva_driver_generate_messages_nodejs.dir/progress.make
 
 eva_driver/CMakeFiles/eva_driver_generate_messages_nodejs: /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/EvaJoint.js
+eva_driver/CMakeFiles/eva_driver_generate_messages_nodejs: /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/Joints.js
 
 
 /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/EvaJoint.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/EvaJoint.js: /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from eva_driver/EvaJoint.msg"
-	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -p eva_driver -o /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg
+
+/home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/Joints.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/Joints.js: /home/zainab/thesis/src/eva_driver/msg/Joints.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from eva_driver/Joints.msg"
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/zainab/thesis/src/eva_driver/msg/Joints.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg
 
 eva_driver_generate_messages_nodejs: eva_driver/CMakeFiles/eva_driver_generate_messages_nodejs
 eva_driver_generate_messages_nodejs: /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/EvaJoint.js
+eva_driver_generate_messages_nodejs: /home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/Joints.js
 eva_driver_generate_messages_nodejs: eva_driver/CMakeFiles/eva_driver_generate_messages_nodejs.dir/build.make
 
 .PHONY : eva_driver_generate_messages_nodejs

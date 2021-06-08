@@ -53,6 +53,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    EvaJoint.msg
+   Joints.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -71,9 +72,9 @@ add_message_files(
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
-#   DEPENDENCIES
-#   geometry_msgs
-   # std_msgs
+   DEPENDENCIES
+   geometry_msgs
+   std_msgs
 )
 
 ################################################
@@ -108,9 +109,8 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES eva_driver
-#  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs
+  CATKIN_DEPENDS message_runtime geometry_msgs roscpp rospy std_msgs
 #  DEPENDS system_lib
-   CATKIN_DEPENDS message_runtime
 )
 
 ###########

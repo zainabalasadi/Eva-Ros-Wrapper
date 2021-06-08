@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/EvaJoint.js"
+  "/home/zainab/thesis/devel/share/gennodejs/ros/eva_driver/msg/Joints.js"
   "CMakeFiles/eva_driver_generate_messages_nodejs"
 )
 

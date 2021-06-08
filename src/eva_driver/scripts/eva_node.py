@@ -20,7 +20,7 @@ class EvaNode:
         self.driver = EvaDriver()
        
         # Publishing frequency
-        publish_current_pos_frequency = rospy.get_param("~publish_current_pos_frequency", 5.0)
+        # publish_current_pos_frequency = rospy.get_param("~publish_current_pos_frequency", 5.0)
         publish_grip_status_frequency = rospy.get_param("~publish_motor_status_frequency", 1.0)
 
         # Subscribers and services
@@ -29,9 +29,9 @@ class EvaNode:
         rospy.Service("stop_motor", Trigger, self.callback_stop)
 
         # Publishers
-        self.current_pos_pub = rospy.Publisher("current_pos", EvaJoint, queue_size = 10)
+        # self.current_pos_pub = rospy.Publisher("current_pos", EvaJoint, queue_size = 10)
         self.grip_status_pub = rospy.Publisher("grip_status", Int32, queue_size = 1)
-        rospy.Timer(rospy.Duration(1.0/publish_current_pos_frequency), self.publish_current_pos)
+        # rospy.Timer(rospy.Duration(1.0/publish_current_pos_frequency), self.publish_current_pos)
         rospy.Timer(rospy.Duration(1.0/publish_grip_status_frequency), self.publish_grip_status)
 
 
@@ -39,11 +39,12 @@ class EvaNode:
         self.driver.stop()
 
     def callback_pos_command(self, msg):
-        print(msg.pose.position)
-        eva.node.driver.go_to_position(msg.pose.position)
-       
-        # self.driver.set_current_pos(msg)
-       
+        # print(msg.pose.position)
+        if (msg.pose.position.x == 0 and msg.pose.position.y == 0 and msg.pose.position.z == 0):
+            return
+        else:
+            self.driver.go_to_position(msg.pose.position, 0)
+        
         # pos4 = Vector3()
         # pos4.x = 0.3
         # pos4.y = 0.1
@@ -52,16 +53,14 @@ class EvaNode:
         # if self.driver.get_current_pos() == pos4:
         #     print("I am innnnn")
         #     eva_node.driver.go_to_position(pos4, 0)
-        #     with eva_node.driver.eva.lock():
-        #         eva_node.driver.go_home()
        
 
     def callback_stop(self, req):
         self.stop()
         return {"success": True, "message": "Eva has been stopped."}
 
-    def publish_current_pos(self, event = None):
-        self.current_pos_pub.publish(self.driver.get_current_pos())
+    # def publish_current_pos(self, event = None):
+    #     self.current_pos_pub.publish(self.driver.get_current_pos())
        
     # def publish_current_speed(self, event=None):
         # self.current_speed_pub.publish(self.motor.get_speed())

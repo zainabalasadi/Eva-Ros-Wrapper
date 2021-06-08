@@ -54,16 +54,24 @@ CMAKE_BINARY_DIR = /home/zainab/thesis/build
 include eva_driver/CMakeFiles/eva_driver_generate_messages_cpp.dir/progress.make
 
 eva_driver/CMakeFiles/eva_driver_generate_messages_cpp: /home/zainab/thesis/devel/include/eva_driver/EvaJoint.h
+eva_driver/CMakeFiles/eva_driver_generate_messages_cpp: /home/zainab/thesis/devel/include/eva_driver/Joints.h
 
 
 /home/zainab/thesis/devel/include/eva_driver/EvaJoint.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/zainab/thesis/devel/include/eva_driver/EvaJoint.h: /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg
 /home/zainab/thesis/devel/include/eva_driver/EvaJoint.h: /opt/ros/noetic/share/gencpp/msg.h.template
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from eva_driver/EvaJoint.msg"
-	cd /home/zainab/thesis/src/eva_driver && /home/zainab/thesis/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -p eva_driver -o /home/zainab/thesis/devel/include/eva_driver -e /opt/ros/noetic/share/gencpp/cmake/..
+	cd /home/zainab/thesis/src/eva_driver && /home/zainab/thesis/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/include/eva_driver -e /opt/ros/noetic/share/gencpp/cmake/..
+
+/home/zainab/thesis/devel/include/eva_driver/Joints.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/zainab/thesis/devel/include/eva_driver/Joints.h: /home/zainab/thesis/src/eva_driver/msg/Joints.msg
+/home/zainab/thesis/devel/include/eva_driver/Joints.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from eva_driver/Joints.msg"
+	cd /home/zainab/thesis/src/eva_driver && /home/zainab/thesis/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/zainab/thesis/src/eva_driver/msg/Joints.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/include/eva_driver -e /opt/ros/noetic/share/gencpp/cmake/..
 
 eva_driver_generate_messages_cpp: eva_driver/CMakeFiles/eva_driver_generate_messages_cpp
 eva_driver_generate_messages_cpp: /home/zainab/thesis/devel/include/eva_driver/EvaJoint.h
+eva_driver_generate_messages_cpp: /home/zainab/thesis/devel/include/eva_driver/Joints.h
 eva_driver_generate_messages_cpp: eva_driver/CMakeFiles/eva_driver_generate_messages_cpp.dir/build.make
 
 .PHONY : eva_driver_generate_messages_cpp

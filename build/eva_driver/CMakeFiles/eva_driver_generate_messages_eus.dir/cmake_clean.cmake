@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "/home/zainab/thesis/devel/share/roseus/ros/eva_driver/manifest.l"
   "/home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/EvaJoint.l"
+  "/home/zainab/thesis/devel/share/roseus/ros/eva_driver/msg/Joints.l"
   "CMakeFiles/eva_driver_generate_messages_eus"
 )
 

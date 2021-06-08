@@ -54,21 +54,29 @@ CMAKE_BINARY_DIR = /home/zainab/thesis/build
 include eva_driver/CMakeFiles/eva_driver_generate_messages_py.dir/progress.make
 
 eva_driver/CMakeFiles/eva_driver_generate_messages_py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_EvaJoint.py
+eva_driver/CMakeFiles/eva_driver_generate_messages_py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_Joints.py
 eva_driver/CMakeFiles/eva_driver_generate_messages_py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/__init__.py
 
 
 /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_EvaJoint.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_EvaJoint.py: /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG eva_driver/EvaJoint"
-	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -p eva_driver -o /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zainab/thesis/src/eva_driver/msg/EvaJoint.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg
+
+/home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_Joints.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_Joints.py: /home/zainab/thesis/src/eva_driver/msg/Joints.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG eva_driver/Joints"
+	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/zainab/thesis/src/eva_driver/msg/Joints.msg -Ieva_driver:/home/zainab/thesis/src/eva_driver/msg -Igeometry_msgs:/opt/ros/noetic/share/geometry_msgs/cmake/../msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p eva_driver -o /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg
 
 /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/__init__.py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_EvaJoint.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python msg __init__.py for eva_driver"
+/home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/__init__.py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_Joints.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/zainab/thesis/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for eva_driver"
 	cd /home/zainab/thesis/build/eva_driver && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg --initpy
 
 eva_driver_generate_messages_py: eva_driver/CMakeFiles/eva_driver_generate_messages_py
 eva_driver_generate_messages_py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_EvaJoint.py
+eva_driver_generate_messages_py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/_Joints.py
 eva_driver_generate_messages_py: /home/zainab/thesis/devel/lib/python3/dist-packages/eva_driver/msg/__init__.py
 eva_driver_generate_messages_py: eva_driver/CMakeFiles/eva_driver_generate_messages_py.dir/build.make
 
