@@ -8,4 +8,3 @@
 
 # modified environment variables
 export PWD='/home/zainab/thesis/build'
-export PYTHONPATH="/home/zainab/thesis/devel/lib/python3/dist-packages:$PYTHONPATH"

@@ -3,6 +3,6 @@ prefix=/home/zainab/thesis/install
 Name: eva_driver
 Description: Description of eva_driver
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
-Requires: 
+Requires: message_runtime

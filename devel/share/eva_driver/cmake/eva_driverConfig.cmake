@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(eva_driver_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT " " STREQUAL " ")
+if(NOT "/home/zainab/thesis/devel/include " STREQUAL " ")
   set(eva_driver_INCLUDE_DIRS "")
-  set(_include_dirs "")
+  set(_include_dirs "/home/zainab/thesis/devel/include")
   if(NOT " " STREQUAL " ")
     set(_report "Check the issue tracker '' and consider creating a ticket if the problem has not been reported yet.")
   elseif(NOT " " STREQUAL " ")
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/zainab/thesis/devel/lib;/home/zainab/thesis/devel/lib;/home/zainab/holoros_thesis/devel/lib;/opt/ros/noetic/lib)
+    foreach(path /home/zainab/thesis/devel/lib;/home/zainab/thesis/devel/lib;/opt/ros/noetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
@@ -177,7 +177,7 @@ foreach(library ${libraries})
   endif()
 endforeach()
 
-set(eva_driver_EXPORTED_TARGETS "")
+set(eva_driver_EXPORTED_TARGETS "eva_driver_generate_messages_cpp;eva_driver_generate_messages_eus;eva_driver_generate_messages_lisp;eva_driver_generate_messages_nodejs;eva_driver_generate_messages_py")
 # create dummy targets for exported code generation targets to make life of users easier
 foreach(t ${eva_driver_EXPORTED_TARGETS})
   if(NOT TARGET ${t})
@@ -185,7 +185,7 @@ foreach(t ${eva_driver_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "")
+set(depends "message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls
@@ -214,7 +214,7 @@ foreach(depend ${depends})
   _list_append_deduplicate(eva_driver_EXPORTED_TARGETS ${${eva_driver_dep}_EXPORTED_TARGETS})
 endforeach()
 
-set(pkg_cfg_extras "")
+set(pkg_cfg_extras "eva_driver-msg-extras.cmake")
 foreach(extra ${pkg_cfg_extras})
   if(NOT IS_ABSOLUTE ${extra})
     set(extra ${eva_driver_DIR}/${extra})
