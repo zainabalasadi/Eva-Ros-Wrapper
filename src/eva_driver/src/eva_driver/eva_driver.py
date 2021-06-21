@@ -127,19 +127,19 @@ class EvaDriver:
     angle: Angular rotation of axis 6 in degrees
     """
     def go_to_position(self, dict):
-        print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position["x"], position["y"], position["z"])
+        # print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position["x"], position["y"], position["z"])
 
-        result = self.get_current_pos();
-
+        result = self.get_current_pos()
         for direction, value in dict.items():
-            result = eva.calc_nudge(result, direction, value)
+            result = self.eva.calc_nudge(result, direction, value)
             print("For move in ", direction, "direction: ", result)
 
             if result is DEFAULT_ERROR:
-                print("I cannot move by ", value "in the", direction, "direction")
+                print("I cannot move by ", value, "in the ", direction, "direction")
                 break
 
         if result is not DEFAULT_ERROR:
-            with eva.lock():
+            with self.eva.lock():
                 print("Moving to ", result)
-                eva.control_go_to(result)
+                self.eva.control_go_to(result)
+                self.set_current_pos(result)
