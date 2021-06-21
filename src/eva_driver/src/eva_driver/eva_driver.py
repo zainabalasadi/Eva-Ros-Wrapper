@@ -9,13 +9,13 @@ from eva_driver.msg import EvaJoint
 
 # VARIABLES
 DEFAULT_POSE_HOME = [0, 0.5235, -1.7453, 0, -1.9198, 0]
+DEFAULT_ERROR = [0, 0, 0, 0, 0, 0]
 DEFAULT_END_EFFECTOR_ORIENTATION = {'w': 0.0, 'x': 0.0, 'y': 1.0, 'z': 0.0}
 
 """
 Helper method to setup the Eva object
 """
 def _setup_eva_connection():
-    # config = load_use_case_config()
     host = '172.16.172.1'
     token = '532dc0b09dbcc79423bc21e31560de5f22c82206'
     return Eva(host, token)
@@ -102,26 +102,6 @@ class EvaDriver:
         print("Fake stopping...")
 
     """
-    Move Eva to the given position.
-    position: Catersian position, with respect to the robot's origin (in metres)
-    angle: Angular rotation of axis 6 in degrees
-    """
-    def go_to_position(self, position, angle):
-        # print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position["x"], position["y"], position["z"]))
-        print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position.x, position.y, position.z))
-
-        success_ik, joints_ik = self.solve_ik_head_down(self.get_current_pos(), angle, position)
-
-        if 'success' in success_ik:
-            with self.eva.lock():
-                self.eva.control_go_to(joints_ik)
-                print('Performed move to joint angles ', joints_ik)
-                self.set_current_pos(joints_ik)
-        else:
-            print('Cannot perform move, error: ', success_ik)
-        # print("Moving...")
-       
-    """
     This method solves the inverse kinematics problem for the special
     case of the end-effector pointing downwards, perpendicular to the ground.
     guess: IK guess, a 1x6 array of joint angles in radians
@@ -140,3 +120,26 @@ class EvaDriver:
         success_ik = result_ik['ik']['result']
         joints_ik = result_ik['ik']['joints']
         return success_ik, joints_ik
+
+    """
+    Move Eva to the given position.
+    position: Catersian position, with respect to the robot's origin (in metres)
+    angle: Angular rotation of axis 6 in degrees
+    """
+    def go_to_position(self, dict):
+        print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position["x"], position["y"], position["z"])
+
+        result = self.get_current_pos();
+
+        for direction, value in dict.items():
+            result = eva.calc_nudge(result, direction, value)
+            print("For move in ", direction, "direction: ", result)
+
+            if result is DEFAULT_ERROR:
+                print("I cannot move by ", value "in the", direction, "direction")
+                break
+
+        if result is not DEFAULT_ERROR:
+            with eva.lock():
+                print("Moving to ", result)
+                eva.control_go_to(result)

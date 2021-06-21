@@ -7,13 +7,11 @@ import rospy
 from eva_driver.eva_driver import EvaDriver
 
 from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import Point
 from std_msgs.msg import Int32
 from std_srvs.srv import Trigger
 from eva_driver.msg import EvaJoint
 
-
-SECOND_POSE = [0.46364754, -0.72790223, -1.9077139, -0.00000023, -0.5059762, 0.46364772]
-FIRST_POSE = [-0.5404194, 0.3765179, -2.7276318, 0.00000090, -0.79047835, -0.54042065]
 
 class EvaNode:
     def __init__(self):
@@ -24,8 +22,7 @@ class EvaNode:
         publish_grip_status_frequency = rospy.get_param("~publish_motor_status_frequency", 1.0)
 
         # Subscribers and services
-        # rospy.Subscriber("odom", PoseStamped, self.callback_pose)
-        rospy.Subscriber("pos_command", PoseStamped, self.callback_pos_command)
+        rospy.Subscriber("pos_command", Point, self.callback_pos_command)
         rospy.Service("stop_motor", Trigger, self.callback_stop)
 
         # Publishers
@@ -39,25 +36,16 @@ class EvaNode:
         self.driver.stop()
 
     def callback_pos_command(self, msg):
-        # print(msg.pose.position)
-        if (msg.pose.position.x == 0 and msg.pose.position.y == 0 and msg.pose.position.z == 0):
+        if (msg.x == 0 and msg.y == 0 and msg.z == 0):
             return
         else:
-            self.driver.go_to_position(msg.pose.position, 0)
-        
-        # pos4 = Vector3()
-        # pos4.x = 0.3
-        # pos4.y = 0.1
-        # pos4.z = 0.2
-       
-        # if self.driver.get_current_pos() == pos4:
-        #     print("I am innnnn")
-        #     eva_node.driver.go_to_position(pos4, 0)
-       
+            nudge_coordinates = {"x": msg.x, "y": msg.y, "z": msg.z}
+            self.driver.go_to_position(nudge_coordinates)
 
     def callback_stop(self, req):
         self.stop()
         return {"success": True, "message": "Eva has been stopped."}
+
 
     # def publish_current_pos(self, event = None):
     #     self.current_pos_pub.publish(self.driver.get_current_pos())
@@ -84,15 +72,9 @@ class EvaNode:
 
 
 if __name__ == "__main__":
-    # Instantiate Eva noded
+    # Instantiate Eva node
     rospy.init_node("eva_driver")
     eva_node = EvaNode()
     rospy.on_shutdown(eva_node.stop)
     rospy.loginfo("Eva node is now started, ready to get commands.")
-
-    # with eva_node.driver.eva.lock():
-        # eva_node.driver.eva.control_go_to(FIRST_POSE)
-        # eva_node.driver.eva.control_go_to(SECOND_POSE)
-        # eva_node.driver.go_home()
-   
     rospy.spin()
