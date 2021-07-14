@@ -99,6 +99,8 @@ class EvaDriver:
     """
     def stop(self):
         # self.eva.control_stop_loop()
+        with self.eva.lock():
+            self.go_home()
         print("Fake stopping...")
 
     """
@@ -123,23 +125,24 @@ class EvaDriver:
 
     """
     Move Eva to the given position.
-    position: Catersian position, with respect to the robot's origin (in metres)
-    angle: Angular rotation of axis 6 in degrees
+    x   (positive, back)    (negative, forward)
+    y   (positive, printer) (negative, baxter)
+    z   (positive, down)    (negative, up)
     """
     def go_to_position(self, dict):
-        # print('MOVE: I am going to move by x={:f}, y={:f} z={:f}'.format(position["x"], position["y"], position["z"])
+        print('MOVE: I am going to move by x=', dict["x"], ' y=', dict["y"], ' z=', dict["z"])
 
         result = self.get_current_pos()
         for direction, value in dict.items():
             result = self.eva.calc_nudge(result, direction, value)
-            print("For move in ", direction, "direction: ", result)
+            # print("For move in ", direction, "direction: ", result)
 
             if result is DEFAULT_ERROR:
                 print("I cannot move by ", value, "in the ", direction, "direction")
                 break
 
         if result is not DEFAULT_ERROR:
+            print("Moving to ", result)
             with self.eva.lock():
-                print("Moving to ", result)
                 self.eva.control_go_to(result)
                 self.set_current_pos(result)
