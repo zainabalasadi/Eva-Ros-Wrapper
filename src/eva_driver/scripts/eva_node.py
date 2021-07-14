@@ -6,9 +6,9 @@
 import rospy
 from eva_driver.eva_driver import EvaDriver
 
-from geometry_msgs.msg import PoseStamped
 from geometry_msgs.msg import Point
 from std_msgs.msg import Int32
+from std_msgs.msg import Bool
 from std_srvs.srv import Trigger
 from eva_driver.msg import EvaJoint
 
@@ -22,7 +22,8 @@ class EvaNode:
         publish_grip_status_frequency = rospy.get_param("~publish_motor_status_frequency", 1.0)
 
         # Subscribers and services
-        rospy.Subscriber("pos_command", Point, self.callback_pos_command)
+        rospy.Subscriber("position", Point, self.callback_pos_command)
+        rospy.Subscriber("grip", Bool, self.callback_grip)
         rospy.Service("stop_motor", Trigger, self.callback_stop)
 
         # Publishers
@@ -60,21 +61,17 @@ class EvaNode:
         position = [msg.pose.position.x, msg.pose.position.y, msg.pose.position.z]
         self.driver.go_to_position(position, 0)
 
-    def callback_pick(self):
-        # TODO
-        print("TODO: picking")
-        self.driver.pick()
-
-    def callback_drop(self):
-        # TODO
-        print("TODO: dropping")
-        self.driver.drop()
+    def callback_grip(self, msg):
+        if (msg.data):
+            self.driver.pick()
+        else:
+            self.driver.drop()
 
 
 if __name__ == "__main__":
     # Instantiate Eva node
     rospy.init_node("eva_driver")
     eva_node = EvaNode()
-    rospy.on_shutdown(eva_node.stop)
+    rospy.on_shutdown(eva_node.stop())
     rospy.loginfo("Eva node is now started, ready to get commands.")
     rospy.spin()

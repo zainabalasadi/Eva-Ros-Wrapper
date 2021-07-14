@@ -1,11 +1,11 @@
 import math
 import numpy as np
 import json
-import types
-import time
 import socket
 from evasdk import Eva
+from gripper import Gripper
 from eva_driver.msg import EvaJoint
+from time import sleep
 
 # VARIABLES
 DEFAULT_POSE_HOME = [0, 0.5235, -1.7453, 0, -1.9198, 0]
@@ -46,18 +46,23 @@ class EvaDriver:
         self.eva = _setup_eva_connection()
         self._is_grasp = False
         self._current_pos = array_to_joint(DEFAULT_POSE_HOME)
+        self.gripper = Gripper(self.eva)
 
+        # Start at home position, activate valve
         with self.eva.lock():
             self.go_home()
+            if self.gripper.pressure_on():
+                print("DEBUG: Gripper pressure is stable")
+            else:
+                print("DEBUG: Gripper pressure is unstable!")
 
     """
     Generic getters and setters for EvaDriver.
     """
     def get_is_grasp(self):
         return self._is_grasp
-    def set_is_grasp(self, new_is_grasp):
-        if isinstance(new_is_grasp, types.BooleanType):
-            self._is_grasp = new_is_grasp
+    def set_is_grasp(self, grasp_status):
+        self._is_grasp = grasp_status
 
     def get_current_pos(self):
         return joint_to_array(self._current_pos)
@@ -71,9 +76,13 @@ class EvaDriver:
     """
     def pick(self):
         if not self.get_is_grasp():
-            print('ACTION: I am picking up an object...')
-            time.sleep(1)
-            self.set_is_grasp(True)
+            with eva.lock():
+                if self.gripper.suction_on():
+                    sleep(1)
+                    self.set_is_grasp(True)
+                    print("ACTION: Grasped")
+                else:
+                    print("DEBUG: Couldn't grasp")
 
     """
     Drop the item in Eva's grasp at the current position. The function
@@ -82,26 +91,28 @@ class EvaDriver:
     """
     def drop(self):
         if self.get_is_grasp():
-            print('ACTION: I am dropping an object...')
-            time.sleep(1)
-            self.set_is_grasp(False)
+            with eva.lock():
+                self.gripper.suction_off():
+                sleep(1)
+                self.set_is_grasp(False)
+                print("ACTION: Un-grasped")
 
     """
     Take Eva back to her home position.
     """
     def go_home(self):
-        print('MOVE: I am going home...')
+        print("ACTION: I am going home...")
         self.eva.control_go_to(DEFAULT_POSE_HOME)
 
     """
-    Stubby stop function
-    TODO: Check if Eva SDK has stop functionality
+    Stop function, moves eva home and turns off gripper pressure
     """
     def stop(self):
         # self.eva.control_stop_loop()
         with self.eva.lock():
             self.go_home()
-        print("Fake stopping...")
+            self.robot.pressure_off()
+        print("ACTION: Stopping Eva...")
 
     """
     This method solves the inverse kinematics problem for the special
@@ -130,7 +141,7 @@ class EvaDriver:
     z   (positive, down)    (negative, up)
     """
     def go_to_position(self, dict):
-        print('MOVE: I am going to move by x=', dict["x"], ' y=', dict["y"], ' z=', dict["z"])
+        print("DEBUG: I am going to move by x=", dict["x"], " y=", dict["y"], " z=", dict["z"])
 
         result = self.get_current_pos()
         for direction, value in dict.items():
@@ -138,11 +149,11 @@ class EvaDriver:
             # print("For move in ", direction, "direction: ", result)
 
             if result is DEFAULT_ERROR:
-                print("I cannot move by ", value, "in the ", direction, "direction")
+                print("DEBUG: I cannot move by ", value, "in the ", direction, "direction")
                 break
 
         if result is not DEFAULT_ERROR:
-            print("Moving to ", result)
+            print("ACTION: Moving to ", result)
             with self.eva.lock():
                 self.eva.control_go_to(result)
                 self.set_current_pos(result)
