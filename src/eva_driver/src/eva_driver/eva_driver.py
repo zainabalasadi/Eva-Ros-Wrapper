@@ -3,7 +3,7 @@ import numpy as np
 import json
 import socket
 from evasdk import Eva
-from gripper import Gripper
+from eva_driver.gripper import Gripper
 from eva_driver.msg import EvaJoint
 from time import sleep
 
@@ -46,15 +46,15 @@ class EvaDriver:
         self.eva = _setup_eva_connection()
         self._is_grasp = False
         self._current_pos = array_to_joint(DEFAULT_POSE_HOME)
-        self.gripper = Gripper(self.eva)
+        # self.gripper = Gripper(self.eva)
 
         # Start at home position, activate valve
         with self.eva.lock():
             self.go_home()
-            if self.gripper.pressure_on():
-                print("DEBUG: Gripper pressure is stable")
-            else:
-                print("DEBUG: Gripper pressure is unstable!")
+            # if self.gripper.pressure_on():
+            #     print("DEBUG: Gripper pressure is stable")
+            # else:
+            #     print("DEBUG: Gripper pressure is unstable!")
 
     """
     Generic getters and setters for EvaDriver.
@@ -92,7 +92,7 @@ class EvaDriver:
     def drop(self):
         if self.get_is_grasp():
             with eva.lock():
-                self.gripper.suction_off():
+                self.gripper.suction_off()
                 sleep(1)
                 self.set_is_grasp(False)
                 print("ACTION: Un-grasped")
@@ -111,7 +111,7 @@ class EvaDriver:
         # self.eva.control_stop_loop()
         with self.eva.lock():
             self.go_home()
-            self.robot.pressure_off()
+            # self.robot.pressure_off()
         print("ACTION: Stopping Eva...")
 
     """

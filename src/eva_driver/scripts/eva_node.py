@@ -23,14 +23,14 @@ class EvaNode:
 
         # Subscribers and services
         rospy.Subscriber("position", Point, self.callback_pos_command)
-        rospy.Subscriber("grip", Bool, self.callback_grip)
+        # rospy.Subscriber("grip", Bool, self.callback_grip)
         rospy.Service("stop_motor", Trigger, self.callback_stop)
 
         # Publishers
         # self.current_pos_pub = rospy.Publisher("current_pos", EvaJoint, queue_size = 10)
-        self.grip_status_pub = rospy.Publisher("grip_status", Int32, queue_size = 1)
+        # self.grip_status_pub = rospy.Publisher("grip_status", Int32, queue_size = 1)
         # rospy.Timer(rospy.Duration(1.0/publish_current_pos_frequency), self.publish_current_pos)
-        rospy.Timer(rospy.Duration(1.0/publish_grip_status_frequency), self.publish_grip_status)
+        # rospy.Timer(rospy.Duration(1.0/publish_grip_status_frequency), self.publish_grip_status)
 
 
     def stop(self):
@@ -72,6 +72,6 @@ if __name__ == "__main__":
     # Instantiate Eva node
     rospy.init_node("eva_driver")
     eva_node = EvaNode()
-    rospy.on_shutdown(eva_node.stop())
+    rospy.on_shutdown(eva_node.stop)
     rospy.loginfo("Eva node is now started, ready to get commands.")
     rospy.spin()
