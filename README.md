@@ -1,4 +1,4 @@
-# Thesis (HoloLens-Eva Teleoperation)
+HoloLens-Eva-ROS Integration
 
 ## Setup
 ### Run Rosbridge
@@ -22,4 +22,3 @@ If you are receiving errors regarding the launch files, run:
 catkin_make
 source devel/setup.bash
 ```
-<!-- ws://192.168.0.84:9090 -->
